@@ -1,6 +1,8 @@
 * SRFI-194: Random data generators
 ** Abstract
-This SRFI defines a set of SRFI 158 generators and generator makers that yield random data of specific ranges and distributions. It is intended to be implemented on top of SRFI 27, which provides the underlying source of random integers and floats.
+This SRFI defines a set of [[https://srfi.schemers.org/srfi-158/srfi-158.html][SRFI 158]] generators and generator makers that yield random data of specific ranges and distributions. It is intended to be implemented on top of [[https://srfi.schemers.org/srfi-27/srfi-27.html][SRFI 27]], which provides the underlying source of random integers and floats.
+
+For more information see: [[https://srfi.schemers.org/srfi-194/][SRFI-194: Random data generators]]
 ** Rationale
 Most of SRFI 27 is involved with creating and managing random sources; there are only two generators for getting random numbers, namely random-integer to get a random but bounded non-negative exact integer, and random-real to get a random inexact real number in the unit interval. (When making use of a non-default random number source, the otherwise equivalent procedures random-source-make-integers and random-source-make-reals can be used instead.)
 
@@ -11,7 +13,7 @@ All these use a uniform distribution of random numbers, but normal, exponential,
 *** Current random source
 current-random-source
 
-An R7RS or SRFI 39 parameter that provides the random source for all the procedures in this SRFI. Its initial value is default-random-source from SRFI 27. Use parameterize to specify a dynamic scope in which a different SRFI 27 random source is used when creating new generators. The behavior of existing generators is not affected by changes to this parameter.
+An R7RS or [[https://srfi.schemers.org/srfi-39/srfi-39.html][SRFI 39]] parameter that provides the random source for all the procedures in this SRFI. Its initial value is default-random-source from SRFI 27. Use parameterize to specify a dynamic scope in which a different SRFI 27 random source is used when creating new generators. The behavior of existing generators is not affected by changes to this parameter.
 **** (with-random-source random-source thunk)
 
 Binds current-random-source to random-source and then invokes thunk.
@@ -46,7 +48,7 @@ Returns a generator of exact integers between lower-bound (inclusive) and upper-
  * (make-random-u64-generator)
  * (make-random-s64-generator)
 
-These procedures return generators of exact integers in the ranges of 1-bit unsigned and 8, 16, 32, and 64-bit signed and unsigned values respectively. These values can be stored in the corresponding homogeneous vectors of SRFI 160 and SRFI 178.
+These procedures return generators of exact integers in the ranges of 1-bit unsigned and 8, 16, 32, and 64-bit signed and unsigned values respectively. These values can be stored in the corresponding homogeneous vectors of [[https://srfi.schemers.org/srfi-160/srfi-160.html][SRFI 160]] and [[https://srfi.schemers.org/srfi-178/srfi-178.html][SRFI 178]].
 
 #+BEGIN_SRC scheme
 (generator->list (make-random-s8-generator) 10)
@@ -118,8 +120,8 @@ Returns a generator that generates points in real n-dimensional Euclidean space 
 **** (gsampling generator ...)
 Takes the generators and returns a new generator. Every time the resulting generator is called, it picks one of the input generators with equal probability, then calls it to get a value. When all the generators are exhausted or no generators are specified, the new generator returns an end-of-file object.
 ** Implementation
-sample implementation is in the repository of this SRFI and in this .tgz file. An R7RS library file and a separate file containing the actual implementation are
-provided, along with a test file that works with SRFI 64. The library itself depends on either SRFI 121 or SRFI 158, and of course SRFI 27.
+The sample implementation is in the [[https://github.com/scheme-requests-for-implementation/srfi-194][repository]] of this SRFI and in [[https://srfi.schemers.org/srfi-194/srfi-194.tgz][this .tgz file]]. An R7RS library file and a separate file containing the actual implementation are
+provided, along with a test file that works with [[https://srfi.schemers.org/srfi-64/srfi-64.html][SRFI 64]]. The library itself depends on either [[https://srfi.schemers.org/srfi-121/srfi-121.html][SRFI 121]] or [[https://srfi.schemers.org/srfi-158/srfi-158.html][SRFI 158]], and of course [[https://srfi.schemers.org/srfi-27/srfi-27.html][SRFI 27]].
 ** Acknowledgements
 SRFI began life as Shiro Kawai's specification for data.random, a Gauche library. Many of the names have been changed to fit in better with SRFI 158 names, but the essence is the same. John Cowan made those and other revisions, and then put the SRFI on the back burner until he got around to implementing it. Arvydas Silanskas began by asking why the next R7RS-large ballot was so delayed, and ended up volunteering to write code for the parts already specified. This SRFI is his first such implementation, and in the process of writing it he found a number of errors in the specification as well, which John was very glad to be told about.
 
