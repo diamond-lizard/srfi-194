@@ -35,7 +35,7 @@ Returns a generator of exact integers between lower-bound (inclusive) and upper-
 
 ;; Roll the die 10 times
 (generator->list die 10)
- ⇑ (6 6 2 4 2 5 5 1 2 2)
+ ⇒ (6 6 2 4 2 5 5 1 2 2)
 #+END_SRC
 **** Exact integer generators
  * (make-random-u1-generator)
@@ -52,7 +52,7 @@ These procedures return generators of exact integers in the ranges of 1-bit unsi
 
 #+BEGIN_SRC scheme
 (generator->list (make-random-s8-generator) 10)
- ⇑ (20 -101 50 -99 -111 -28 -19 -61 39 110)
+ ⇒ (20 -101 50 -99 -111 -28 -19 -61 39 110)
 #+END_SRC
 **** (clamp-real-number lower-bound upper-bound value)
 Returns value clamped to be between lower-bound and upper-bound, inclusive. Note that this procedure works with either exact or inexact numbers, but will produce strange results with a mixture of the two. It is an error if the specified interval is empty.
@@ -63,7 +63,7 @@ Returns a generator that generates inexact real numbers uniformly. (Note that th
 (define uniform-100 (make-random-real-generator 0 100))
 
 (generator->list uniform-100 3)
- ⇑ (81.67965004942268 81.84927577572596 53.02443813660833)
+ ⇒ (81.67965004942268 81.84927577572596 53.02443813660833)
 
 (define generate-from-0-below-1
   (gfilter (lambda (r) (not (= r 1.0))) (make-random-real-generator 0.0 1.0)))
@@ -77,7 +77,7 @@ Generates boolean values (#f and #t) with equal probability.
 ***** Example
 #+BEGIN_SRC scheme
 (generator->list (make-random-boolean-generator) 10)
- ⇑ (#f #f #t #f #f #t #f #f #f #f)
+ ⇒ (#f #f #t #f #f #t #f #f #f #f)
 #+END_SRC
 **** (make-random-char-generator string)
 Returns a generator that generates characters in string uniformly. Note that the characters in string need not be distinct, which allows simple weighting. It is an error if string is empty.
@@ -87,7 +87,7 @@ Returns a generator that generates characters in string uniformly. Note that the
 (define alphanumeric-chars (make-random-char-generator alphanumerics))
 
 (generator->list alphanumeric-chars 10)
- ⇑ (#\f #\m #\3 #\S #\z #\m #\x #\S #\l #\y)
+ ⇒ (#\f #\m #\3 #\S #\z #\m #\x #\S #\l #\y)
 #+END_SRC
 **** (make-random-string-generator k string)
 Returns a generator that generates random strings whose characters are in string. Note that the characters in string need not be distinct, which allows simple weighting. The length of the strings is uniformly distributed between 0 (inclusive) and the length of string (exclusive). It is an error if string is empty.
