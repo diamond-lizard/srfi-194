@@ -5,11 +5,9 @@
           (scheme complex)
           (scheme write)
           (srfi 27)
-          (srfi 133))
-
-  (cond-expand
-    ((library (srfi 158)) (import (srfi 158)))
-    ((library (srfi 121)) (import (srfi 121))))
+          (srfi 121)
+          (srfi 133)
+          (srfi 158))
 
   (export
 
