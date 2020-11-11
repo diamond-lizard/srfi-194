@@ -1,40 +1,13 @@
 * SRFI-194: Random data generators
+** Abstract
+This SRFI defines a set of SRFI 158 generators and generator makers that yield random data of specific ranges and distributions. It is intended to be implemented on top of SRFI 27, which provides the underlying source of random integers and floats.
+** Rationale
+Most of SRFI 27 is involved with creating and managing random sources; there are only two generators for getting random numbers, namely random-integer to get a random but bounded non-negative exact integer, and random-real to get a random inexact real number in the unit interval. (When making use of a non-default random number source, the otherwise equivalent procedures random-source-make-integers and random-source-make-reals can be used instead.)
 
-by Shiro Kawai (design), Arvydas Silanskas (implementation), Linas Vepštas (implementation), and John Cowan (editor and shepherd)
+However, it's very often useful to loosen these limitations, to provide random exact integers or real numbers within any desired range. In order to make them easy to use, they are exposed as generators: choose your bounds and you get a procedure which can be called without any arguments. This allows them to participate freely in the SRFI 158 infrastructure. In the same way, random booleans, random characters chosen from a seed string, and strings of random lengths up to a limit and with characters drawn from the same kind of seed string are all available.
 
-Status
-
-This SRFI is currently in final status. Here is an explanation of each status that a SRFI can hold. To provide input on this SRFI, please send email to srfi-194@nospam
-srfi.schemers.org. To subscribe to the list, follow these instructions. You can access previous messages via the mailing list archive.
-
-  * Received: 2020-05-03
-  * Draft #1 published: 2020-05-14
-  * Draft #2 published: 2020-06-16
-  * Draft #3 published: 2020-08-06
-  * Draft #4 published: 2020-08-22
-  * Finalized: 2020-08-26
-
-Abstract
-
-This SRFI defines a set of SRFI 158 generators and generator makers that yield random data of specific ranges and distributions. It is intended to be implemented on top of
-SRFI 27, which provides the underlying source of random integers and floats.
-
-Rationale
-
-Most of SRFI 27 is involved with creating and managing random sources; there are only two generators for getting random numbers, namely random-integer to get a random but
-bounded non-negative exact integer, and random-real to get a random inexact real number in the unit interval. (When making use of a non-default random number source, the
-otherwise equivalent procedures random-source-make-integers and random-source-make-reals can be used instead.)
-
-However, it's very often useful to loosen these limitations, to provide random exact integers or real numbers within any desired range. In order to make them easy to use,
-they are exposed as generators: choose your bounds and you get a procedure which can be called without any arguments. This allows them to participate freely in the SRFI
-158 infrastructure. In the same way, random booleans, random characters chosen from a seed string, and strings of random lengths up to a limit and with characters drawn
-from the same kind of seed string are all available.
-
-All these use a uniform distribution of random numbers, but normal, exponential, geometric, and Poisson distributions also have their uses. Finally, if multiple generators
-are available, uniform and weighted choices can be made from them to produce a unified output stream.
-
-Specification
-
+All these use a uniform distribution of random numbers, but normal, exponential, geometric, and Poisson distributions also have their uses. Finally, if multiple generators are available, uniform and weighted choices can be made from them to produce a unified output stream.
+** Specification
 Current random source
 
 current-random-source
@@ -216,20 +189,21 @@ During the SRFI review process, the following additional generators were added: 
 ball generators written by Linas Vepstas.
 
 Thanks also to the Scheme community and especially the contributors to the SRFI 194 mailing list, including Shiro Kawai and Marc Nieper-Wißkirchen.
-
-Copyright
-
+** Authors
+ * Shiro Kawai (design)
+ * Arvydas Silanskas (implementation)
+ * Linas Vepštas (implementation)
+ * John Cowan (editor and shepherd)
+ * Ported to Chicken Scheme 5 by [[https://wiki.call-cc.org/users/sergey-goldgaber][Sergey Goldgaber]]
+** Copyright
 © 2020 John Cowan.
 
-Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software
-without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to
-permit persons to whom the Software is furnished to do so, subject to the following conditions:
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
 The above copyright notice and this permission notice (including the next paragraph) shall be included in all copies or substantial portions of the Software.
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A
-PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF
-CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-Editor: Arthur A. Gleckler
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+** Source
+Source code for the Chicken Scheme 5 port can be found: [[https://github.com/diamond-lizard/srfi-194][here]]
+** Version history
+ * 0.1 - Port to Chicken Scheme 5
