@@ -29,14 +29,14 @@ In the following examples, we use the generator->list procedure to show some con
 **** (make-random-integer-generator lower-bound upper-bound)
 Returns a generator of exact integers between lower-bound (inclusive) and upper-bound (exclusive) uniformly. It is an error if the bounds are not exact integers or if the specified interval is empty.
 ***** Example
-#+BEGIN_SRC scheme
+<enscript highlight="scheme">
 ;; A die roller
 (define die (make-random-integer-generator 1 7))
 
 ;; Roll the die 10 times
 (generator->list die 10)
  ⇑ (6 6 2 4 2 5 5 1 2 2)
-#+END_SRC
+</enscript>
 **** Exact integer generators
  * (make-random-u1-generator)
  * (make-random-u8-generator)
@@ -50,16 +50,16 @@ Returns a generator of exact integers between lower-bound (inclusive) and upper-
 
 These procedures return generators of exact integers in the ranges of 1-bit unsigned and 8, 16, 32, and 64-bit signed and unsigned values respectively. These values can be stored in the corresponding homogeneous vectors of [[https://srfi.schemers.org/srfi-160/srfi-160.html][SRFI 160]] and [[https://srfi.schemers.org/srfi-178/srfi-178.html][SRFI 178]].
 
-#+BEGIN_SRC scheme
+<enscript highlight="scheme">
 (generator->list (make-random-s8-generator) 10)
  ⇑ (20 -101 50 -99 -111 -28 -19 -61 39 110)
-#+END_SRC
+</enscript>
 **** (clamp-real-number lower-bound upper-bound value)
 Returns value clamped to be between lower-bound and upper-bound, inclusive. Note that this procedure works with either exact or inexact numbers, but will produce strange results with a mixture of the two. It is an error if the specified interval is empty.
 **** (make-random-real-generator lower-bound upper-bound)
 Returns a generator that generates inexact real numbers uniformly. (Note that this is not the same as returning all possible IEEE floats within the stated range uniformly.) The procedure returns reals between lower-bound and upper-bound, both inclusive. The similar procedure random-real in SRFI 27 uses the exclusive bounds 0.0 and 1.0. It is an error if the specified interval is empty.
 ***** Examples
-#+BEGIN_SRC scheme
+<enscript highlight="scheme">
 (define uniform-100 (make-random-real-generator 0 100))
 
 (generator->list uniform-100 3)
@@ -67,7 +67,7 @@ Returns a generator that generates inexact real numbers uniformly. (Note that th
 
 (define generate-from-0-below-1
   (gfilter (lambda (r) (not (= r 1.0))) (make-random-real-generator 0.0 1.0)))
-#+END_SRC
+</enscript>
 **** (make-random-rectangular-generator real-lower-bound real-upper-bound imaginary-lower-bound imag-upper-bound)
 Returns a generator that generates inexact complex numbers uniformly. The procedure returns complex numbers in a rectangle whose real part is between real-lower-bound and real-upper-bound (both inclusive), and whose imaginary part is between imag-lower-bound and imag-upper-bound (both inclusive). It is an error if either of the specified intervals is empty.
 **** (make-random-polar-generator [ origin ] magnitude-lower-bound magnitude-upper-bound [ angle-lower-bound angle-upper-bound ])
@@ -75,20 +75,20 @@ Returns a generator that generates inexact complex numbers uniformly. The proced
 **** (make-random-boolean-generator)
 Generates boolean values (#f and #t) with equal probability.
 ***** Example
-#+BEGIN_SRC scheme
+<enscript highlight="scheme">
 (generator->list (make-random-boolean-generator) 10)
  ⇑ (#f #f #t #f #f #t #f #f #f #f)
-#+END_SRC
+</enscript>
 **** (make-random-char-generator string)
 Returns a generator that generates characters in string uniformly. Note that the characters in string need not be distinct, which allows simple weighting. It is an error if string is empty.
 
-#+BEGIN_SRC scheme
+<enscript highlight="scheme">
 (define alphanumerics "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789")
 (define alphanumeric-chars (make-random-char-generator alphanumerics))
 
 (generator->list alphanumeric-chars 10)
  ⇑ (#\f #\m #\3 #\S #\z #\m #\x #\S #\l #\y)
-#+END_SRC
+</enscript>
 **** (make-random-string-generator k string)
 Returns a generator that generates random strings whose characters are in string. Note that the characters in string need not be distinct, which allows simple weighting. The length of the strings is uniformly distributed between 0 (inclusive) and the length of string (exclusive). It is an error if string is empty.
 *** Nonuniform distributions
