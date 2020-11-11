@@ -38,15 +38,15 @@ Returns a generator of exact integers between lower-bound (inclusive) and upper-
  ⇑ (6 6 2 4 2 5 5 1 2 2)
 </enscript>
 ===== Exact integer generators
- * (make-random-u1-generator)
- * (make-random-u8-generator)
- * (make-random-s8-generator)
- * (make-random-u16-generator)
- * (make-random-s16-generator)
- * (make-random-u32-generator)
- * (make-random-s32-generator)
- * (make-random-u64-generator)
- * (make-random-s64-generator)
+* (make-random-u1-generator)
+* (make-random-u8-generator)
+* (make-random-s8-generator)
+* (make-random-u16-generator)
+* (make-random-s16-generator)
+* (make-random-u32-generator)
+* (make-random-s32-generator)
+* (make-random-u64-generator)
+* (make-random-s64-generator)
 
 These procedures return generators of exact integers in the ranges of 1-bit unsigned and 8, 16, 32, and 64-bit signed and unsigned values respectively. These values can be stored in the corresponding homogeneous vectors of [[https://srfi.schemers.org/srfi-160/srfi-160.html][SRFI 160]] and [[https://srfi.schemers.org/srfi-178/srfi-178.html][SRFI 178]].
 
@@ -129,11 +129,11 @@ During the SRFI review process, the following additional generators were added: 
 
 Thanks also to the Scheme community and especially the contributors to the SRFI 194 mailing list, including Shiro Kawai and Marc Nieper-Wißkirchen.
 === Authors
- * Shiro Kawai (design)
- * Arvydas Silanskas (implementation)
- * Linas Vepštas (implementation)
- * John Cowan (editor and shepherd)
- * Ported to Chicken Scheme 5 by [[https://wiki.call-cc.org/users/sergey-goldgaber][Sergey Goldgaber]]
+* Shiro Kawai (design)
+* Arvydas Silanskas (implementation)
+* Linas Vepštas (implementation)
+* John Cowan (editor and shepherd)
+* Ported to Chicken Scheme 5 by [[https://wiki.call-cc.org/users/sergey-goldgaber][Sergey Goldgaber]]
 === Copyright
 © 2020 John Cowan.
 
@@ -145,4 +145,4 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 === Source
 Source code for the Chicken Scheme 5 port can be found: [[https://github.com/diamond-lizard/srfi-194][here]]
 === Version history
- * 0.1 - Port to Chicken Scheme 5
+* 0.1 - Port to Chicken Scheme 5
