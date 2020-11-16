@@ -4,7 +4,7 @@
           (scheme inexact)
           (scheme complex)
           (scheme write)
-          (srfi 27)
+          (except srfi-27 current-random-source)
           (srfi 121)
           (srfi 133)
           (srfi 158))
